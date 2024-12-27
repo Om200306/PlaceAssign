@@ -4,6 +4,7 @@ import './App.css'
 import { Home } from './component/home'
 import { SignUp } from './component/signup'
 import { LongIn } from './component/login';
+import { Events } from './component/events';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,6 +16,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path='/login' element={<LongIn/>}/>
+      <Route path='/event' element={<Events/>}/>
     </Routes>
   
     </>

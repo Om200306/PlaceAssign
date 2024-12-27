@@ -1,7 +1,9 @@
-
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
  export function SignUp(){
+
+    let navigate=useNavigate();
 
          function hendleSubmit(e){
 
@@ -10,15 +12,18 @@ import axios from "axios";
              let obj={
                  name:e.target[0].value,
                  email:e.target[1].value,
-                 password:e.target[2].value
+                 password:e.target[2].value,
+                 age:e.target[3].value,
+                 gender:e.target[4].value
              }
     
 
-             axios.post("http://127.0.0.1:3000/hack/signup",obj)
+             axios.post("https://book-store-d61c2-default-rtdb.asia-southeast1.firebasedatabase.app/user.json",obj)
                       .then((res)=>{
-                        console.log(res)
-                    } 
-                    )
+                       alert("User created successfully")
+                       navigate("/login");
+
+                    })
                       .catch((err)=>console.log(err))
 
         
@@ -32,14 +37,23 @@ import axios from "axios";
                 <div>
 
                     <form className="flex flex-col gap-4 relative top-4 p-4" onSubmit={hendleSubmit}>
-                    <input className="border-solid border-2 border-pink-500 rounded-md p-2" type="text" placeholder="Name"/>
-                    <input className="border-solid border-2 border-pink-500 rounded-md p-2" type="text" placeholder="Email"/>
-                    <input className="border-solid border-2 border-pink-500 rounded-md p-2" type="password" placeholder="Password"/>
+                    <input className="border-solid border-2 border-pink-500 rounded-md p-2" type="text" placeholder="Name" required/>
+                    <input className="border-solid border-2 border-pink-500 rounded-md p-2" type="text" placeholder="Email" required/>
+                    <input className="border-solid border-2 border-pink-500 rounded-md p-2" type="password" placeholder="Password" required/>
+                    <input className="border-solid border-2 border-pink-500 rounded-md p-2" type="number" placeholder="age" required/>
+
+                    <select name="gender" id="gender" className="border-solid border-2 border-pink-500 rounded-md p-2" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
 
                     <button type="submit" className="border-solid border-2 text-white bg-pink-500 rounded-md p-1">Sing Up</button>
 
                     </form>
+
                 </div>
+                <button onClick={()=>navigate("/login")} className="text-m p-3">Already have Account.</button>
             </div>
         </div>
     )

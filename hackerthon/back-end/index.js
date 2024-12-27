@@ -2,6 +2,7 @@ const express= require("express");
 const connection = require("./db/connection");
 const authRouter = require("./router/auth");
 const cors= require("cors");
+const eventRouter = require("./router/event");
 
 const app=express();
 
@@ -16,7 +17,7 @@ app.get("/hi",(req ,res)=>{
 })
 
 
-
+    app.use("/event",eventRouter)
      app.use("/hack",authRouter)
 
   

@@ -1,6 +1,6 @@
 
   const {Router}= require("express");
-const hackModel = require("../module/module");
+const { hackModel } = require("../module/module");
 
   const authRouter= new Router();
 
@@ -76,6 +76,9 @@ authRouter.post("/signup", async (req , res)=>{
          }
 
   })
+
+
+authRouter.
 
 
   module.exports=authRouter;
